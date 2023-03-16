@@ -11,7 +11,7 @@ pipeline{
        }
        stage('Jira'){
             steps{
-                jiraComment body: 'Testing this pipeline', issueKey: 'PA-1'
+                step([$class: 'JiraIssueUpdater', issueSelector: [$class: 'ExplicitIssueSelector', issueKeys: 'PA-1'], labels: []])
             }
        }
     }
