@@ -11,6 +11,7 @@ pipeline{
             post{
                 always{
                     jiraSendDeploymentInfo site: 'sweswetha231096.atlassian.net'
+                    step([$class: 'JiraIssueUpdater', issueSelector: [$class: 'ExplicitIssueSelector', issueKeys: 'PA-1'], labels: []])
                 }
             }
        }
