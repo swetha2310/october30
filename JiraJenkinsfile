@@ -8,17 +8,13 @@ pipeline{
             steps{
                 git branch: 'master', url: 'https://github.com/swetha2310/october30.git'
             }
+       }
        stage('Jira'){
             steps{
-                step([$class: 'JiraIssueUpdater', issueSelector: [$class: 'ExplicitIssueSelector', issueKeys: 'PA-1'], labels: []])
-            }
-            post{
-                always{
-                    jiraSendDeploymentInfo site: 'sweswetha231096.atlassian.net'
-                }
+                jiraComment body: 'Testing this pipeline', issueKey: 'PA-1'
             }
        }
     }
 }
-}
+
 
