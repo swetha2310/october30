@@ -1,0 +1,18 @@
+pipeline{
+    agent any
+    environment {
+        PATH = "$PATH:/opt/maven/apache-maven-3.9.0/bin"
+    }
+    stages{
+       stage('GetCode'){
+            steps{
+                git branch: 'master', url: 'https://github.com/swetha2310/october30.git'
+            }
+            post{
+                always{
+                    jiraSendDeploymentInfo site: 'sweswetha231096.atlassian.net'
+                }
+            }
+       }
+    }
+}
